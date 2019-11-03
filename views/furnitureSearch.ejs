@@ -1,26 +1,27 @@
 <%- include('header') -%>
     <div class="jumbotron">
-        <h1>Find the Furniture You Need!</h1>
-        <p>Please enter the furniture that you need and enter size of your room.</p>
-        <p>We will show you available options. Choose your favorite and it will arrive in minutes!!! XD</p>
+        <h1><center>Find the Furniture You Need!</center></h1>
+        <p><center>Please enter the furniture that you need and enter size of your room.</center></p>
+        <p><center>We will show you available options. Choose your favorite and it will arrive in minutes!!! XD</center></p>
     </div>
 
     <form method="post" action="/processform">
-      Furniture Type: <br>
+      <center>
+      <h3>Furniture Type:</h3> <br>
       <select id='door-select'>
      <option value="top">Bed</option>
      <option value="left">Table</option>
      <option value="right">Sofa</option>
      <option value="bottom">Chair</option>
    </select>
+    <center>
       <br>
-      Length of Room: <br><textarea name="TypeMakeup"></textarea>
+      <h3>Length of Room:</h3> <br><textarea name="TypeMakeup"></textarea>
       <br>
-      Width of Room: <br><textarea name="ColorCode"></textarea>
+      <h3>Width of Room:</h3> <br><textarea name="ColorCode"></textarea>
       <br>
-      Comments: <br><textarea name="userComments"></textarea>
       <br>
-      URL: <input type="text" name="url" value="add URL here"> <br>
+      </center>
       <% if (loggedIn) { %>
      <input type="submit">
      <% } else { %>

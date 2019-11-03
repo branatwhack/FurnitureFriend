@@ -1,11 +1,11 @@
 <%- include('header') -%>
     <div class="jumbotron">
-        <h1>Swatching Profile for <%= user.userName %></h1>
+        <h1>Furniture Friend's Profile for <%= user.userName %></h1>
         <img src="<%= user.profilePicURL%>" width="200">
         <hr>
-        <p> Welcome <%= user.googlename %>
+        <p> Welcome <%= user.userName %>
             with email <%= user.googleemail %>
-            You are logged in to Swatching.
+            You are logged in to FurnitureFriend.
 
         <p> <%= user.zipcode %> <%= user.city %> <%= user.state %>
         </p>Last updated on <%= user.lastUpdate %> </p>

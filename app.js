@@ -63,7 +63,7 @@ app.use((req,res,next) => {
   res.locals.loggedIn = false
   if (req.isAuthenticated()){
     if (req.user.googleemail.endsWith("@brandeis.edu") ||
-          approvedLogins.includes(req.user.googleemail))
+          req.user.googleemail.endsWith("@gmail.com"))
           {
             console.log("user has been Authenticated")
             res.locals.user = req.user
@@ -80,7 +80,7 @@ app.use((req,res,next) => {
         console.log("Owner has logged in")
         res.locals.status = 'owner'
       }else {
-        console.log('student has logged in')
+        console.log('User has logged in')
         res.locals.status = 'user'
       }
     }
@@ -96,8 +96,8 @@ app.get('/loginerror', function(req,res){
   res.render('loginerror',{})
 })
 
-app.get('/style.css', function(req,res){
-  res.render('style.css',{})
+app.get('/notyet', function(req,res){
+  res.render('notyet',{})
 })
 
 app.get('/login', function(req,res){
