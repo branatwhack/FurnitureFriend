@@ -15,15 +15,15 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 const mongoose = require( 'mongoose' );
-mongoose.connect( 'mongodb://localhost/test' , {useNewUrlParser: true});
+mongoose.connect( 'mongodb://localhost/local' , {useNewUrlParser: true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log("we are connected!")
 });
 
+const furnitureController = require('./controllers/furnitureController')
 const swatchController = require('./controllers/swatchController')
-
 const profileController = require('./controllers/profileController')
 
 
@@ -182,16 +182,20 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 app.get('/', function(req, res, next) {
-  res.render('index',{title:"Swatching"});
+  res.render('index',{title:"FurnitureFriend"});
 });
 
 app.get('/furnitureSearch', function(req, res, next) {
   res.render('furnitureSearch');
 });
 
+app.get('/furnitureEnter', function(req, res, next) {
+  res.render('furnitureEnter');
+});
+
 app.get('/postresult', function(req, res, next) {
   console.dir(req.body)
-  res.render('postresult',{title:"Form Data", BrandName:req.body.BrandName, TypeMakeup:req.body.TypeMakeup, ColorCode:req.body.ColorCode, userComments:req.body.userComments});
+  res.render('postresult',{title:"Form Data", Type:req.body.Type, Width:req.body.Width, Length:req.body.Length});
 });
 
 
@@ -200,12 +204,13 @@ app.use(function(req,res,next){
     console.log("about to processform")
     next()
 });
-app.post('/processform',swatchController.saveSwatch)
+app.post('/processform',furnitureController.saveFurniture)
 
 app.get('/swatchPlaza', swatchController.getAllSwatch)
 
 app.get('/swatchPlaza/:id', swatchController.getOneSwatch)
 
+app.get('/furnitureStorage', furnitureController.getAllFurniture)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

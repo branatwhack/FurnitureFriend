@@ -2,59 +2,38 @@
 const Furniture = require( '../models/Furniture' );
 
 
-exports.saveSwatch = ( req, res ) => {
-  console.log("in saveSwatch!")
+exports.saveFurniture = ( req, res ) => {
+  console.log("in saveFur!")
   console.dir(req.body)
-  let newSwatch = new Swatch( {
-    BrandName:req.body.BrandName,
-    TypeMakeup: req.body.TypeMakeup,
-    ColorCode: req.body.ColorCode,
-    userComments:req.body.userComments
+  let newFurniture = new Furniture( {
+    Type:req.body.Type,
+    Width: req.body.Width,
+    Length: req.body.Length,
+    picAddress:req.body.picAddress
   } )
 
   //console.log("skill = "+newSkill)
 
-  newSwatch.save()
+  newFurniture.save()
     .then( () => {
-      console.log("saving swatch")
+      console.log("saving Fur")
       res.redirect( '/postresult' );
     } )
     .catch( error => {
       res.send( error );
     } ).
-    then(() => { console.log("saved swatch")})
+    then(() => { console.log("saved Fur")})
 };
 
 
-exports.getAllSwatch = ( req, res ) => {
+exports.getAllFurniture = ( req, res ) => {
   //gconsle.log('in getAllSkills')
-  Swatch.find( )
+  Furniture.find( )
     .exec()
-    .then( ( swatches ) => {
-      res.render( 'swatchPlaza', {
-        swatches:swatches,
-        title:'swatch'
-      } );
-    } )
-    .catch( ( error ) => {
-      console.log( error.message );
-      return [];
-    } )
-    .then( () => {
-      //console.log( 'skill promise complete' );
-    } );
-};
-
-// this displays all of the skills
-exports.getOneSwatch = ( req, res ) => {
-  //gconsle.log('in getAllSkills')
-  const id = req.params.id
-  console.log('********************   the id is '+id)
-  Swatch.findOne({_id:id})
-    .exec()
-    .then( ( swatch ) => {
-      res.render( 'swatch', {
-        swatch:swatch, title:"swatch"
+    .then( ( furnitures ) => {
+      res.render( 'furnitureStorage', {
+        furnitures:furnitures,
+        title:'furniture'
       } );
     } )
     .catch( ( error ) => {

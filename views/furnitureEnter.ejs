@@ -1,0 +1,32 @@
+<%- include('header') -%>
+    <div class="jumbotron">
+        <h1><center>Type in the Furniture!</center></h1>
+    </div>
+
+    <form method="post" action="/processform">
+      <center>
+      <h3>Furniture Type:</h3> <br>
+      <select id='door-select' name="Type">
+           <option value="Bed">Bed</option>
+           <option value="Table">Table</option>
+           <option value="Sofa">Sofa</option>
+           <option value="Chair">Chair</option>
+      </select>
+    <center>
+      <br>
+      <h3>Length of Room:</h3> <br><textarea name="Length"></textarea>
+      <br>
+      <h3>Width of Room:</h3> <br><textarea name="Width"></textarea>
+      <br>
+      <h3>Picture:</h3> <br><textarea name="picAddress"></textarea>
+      <br>
+      </center>
+      <% if (loggedIn) { %>
+     <input type="submit">
+     <% } else { %>
+       You must be logged in to submit form info.
+       <% } %>
+    </form>
+
+
+<%- include('footer') -%>

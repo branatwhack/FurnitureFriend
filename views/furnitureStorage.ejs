@@ -1,0 +1,28 @@
+<%- include('header') -%>
+    <div class="jumbotron">
+        <h1>Here is all furnitures in stock!</h1>
+    </div>
+
+
+    <ol>
+
+      <% for(var i=0; i<furnitures.length; i++) { %>
+        <li>
+          <i>
+          Type: <%= furnitures[i].Type %></\/i>
+          <br>
+          <i>
+          Width: <%= furnitures[i].Width %></\/i>
+          <br>
+          <i>
+          Length: <%= furnitures[i].Length %></\/i>
+          <br>
+          <i>
+          Picture:<br><img src=" <%= furnitures[i].picAddress %>" width="300"></\/i>
+          <br>
+
+         </li>
+      <% } %>
+    </ol>
+
+    <%- include('footer') -%>
