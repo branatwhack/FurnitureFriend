@@ -44,3 +44,26 @@ exports.getAllFurniture = ( req, res ) => {
       //console.log( 'skill promise complete' );
     } );
 };
+
+exports.getFurnitures = ( req, res ) => {
+  //gconsle.log('in getAllSkills')
+  Furniture.find().toArray((err, items)=>{
+    .exec()
+    .then( ( result ) => {
+      console.log( req.body.type );
+      res.render( 'furnitureSearch', {
+            furnitures:result,
+            title:'furnitures'
+      } );
+      console.log( "hey" );
+
+    } )
+    .catch( ( error ) => {
+      console.log( error.message );
+      return [];
+    } )
+    .then( () => {
+      //console.log( 'skill promise complete' );
+    } );
+  };
+};

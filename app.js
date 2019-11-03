@@ -228,6 +228,7 @@ app.post('/sendVal', function(req, res, next) {
   res.render('visual',{title:"Form Data", chairl:req.body.chairl, chairw:req.body.chairw, tablew:req.body.tablew, tablel: req.body.tablel});
 });
 
+
 app.use(function(req,res,next){
     console.log("about to processform")
     next()
@@ -241,6 +242,10 @@ app.get('/swatchPlaza', swatchController.getAllSwatch)
 app.get('/swatchPlaza/:id', swatchController.getOneSwatch)
 
 app.get('/furnitureStorage', furnitureController.getAllFurniture)
+
+app.post('/search', furnitureController.getFurnitures)
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
