@@ -1,0 +1,25 @@
+<%- include('header') -%>
+    <div class="jumbotron">
+        <h1><center>Generate a pic</center></h1>
+    </div>
+
+    <form method="post" action="/sendVal">
+      <center>
+      <br>
+      <h3>Chair Length:</h3> <br><textarea name="chairl"></textarea>
+      <br>
+      <h3>Chair Width:</h3> <br><textarea name="chairw"></textarea>
+      <br>
+      <h3>Table Width:</h3> <br><textarea name="tablel"></textarea>
+      <br>
+      <h3>Table Width:</h3> <br><textarea name="tablew"></textarea>
+      </center>
+      <% if (loggedIn) { %>
+     <input type="submit">
+     <% } else { %>
+       You must be logged in to submit form info.
+       <% } %>
+    </form>
+
+
+<%- include('footer') -%>

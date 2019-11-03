@@ -1,4 +1,4 @@
-var createError = require('http-errors');
+ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -59,7 +59,7 @@ const approvedLogins = ["luyaopei@brandeis.edu"];
 
 // here is where we check on their logged in status
 app.use((req,res,next) => {
-  res.locals.title="Swatching"
+  res.locals.title="Furniture"
   res.locals.loggedIn = false
   if (req.isAuthenticated()){
     if (req.user.googleemail.endsWith("@brandeis.edu") ||
@@ -69,6 +69,7 @@ app.use((req,res,next) => {
             res.locals.user = req.user
             res.locals.loggedIn = true
           }
+
     else {
       res.locals.loggedIn = false
     }
@@ -147,19 +148,33 @@ function isLoggedIn(req, res, next) {
     }
 }
 
+function isOwner(req, res, next) {
+  if (req.user){
+    if (req.user.googleemail=='luyaopei@brandeis.edu'){
+      console.log("Owner has logged in")
+      res.locals.status = 'owner'
+      res.locals.ownership = true
+    }else {
+      console.log('User has logged in')
+      res.locals.status = 'user'
+      res.locals.ownership = false
+    }
+  }
+}
+
 // we require them to be logged in to see their profile
-app.get('/profile', isLoggedIn, function(req, res) {
+app.get('/profile', isLoggedIn,  function(req, res) {
         res.render('profile')/*, {
             user : req.user // get the user out of session and pass to template
         });*/
     });
 
-app.get('/editProfile',isLoggedIn, (req,res)=>{
+app.get('/editProfile',isLoggedIn, isOwner,(req,res)=>{
     res.render('editProfile')
 })
 
-app.get('/profiles', isLoggedIn, profileController.getAllProfiles);
-app.get('/showProfile/:id', isLoggedIn, profileController.getOneProfile);
+app.get('/profiles', isLoggedIn,  profileController.getAllProfiles);
+app.get('/showProfile/:id', isLoggedIn,  profileController.getOneProfile);
 
 
 
@@ -198,13 +213,28 @@ app.get('/postresult', function(req, res, next) {
   res.render('postresult',{title:"Form Data", Type:req.body.Type, Width:req.body.Width, Length:req.body.Length});
 });
 
+app.get('/postresult', function(req, res, next) {
+  console.dir(req.body)
+  res.render('postresult',{title:"Form Data", Type:req.body.Type, Width:req.body.Width, Length:req.body.Length});
+});
 
+app.get('/chairForm', function(req, res, next) {
+  console.dir(req.body)
+  res.render('chairForm',{title:"Form Data", chairl:req.body.chairl, chairw:req.body.chairw, tablew:req.body.tablew, tablel: req.body.tablel});
+});
+
+app.post('/sendVal', function(req, res, next) {
+  console.dir(req.body)
+  res.render('visual',{title:"Form Data", chairl:req.body.chairl, chairw:req.body.chairw, tablew:req.body.tablew, tablel: req.body.tablel});
+});
 
 app.use(function(req,res,next){
     console.log("about to processform")
     next()
 });
 app.post('/processform',furnitureController.saveFurniture)
+
+app.get('/swatchPlaza', swatchController.getAllSwatch)
 
 app.get('/swatchPlaza', swatchController.getAllSwatch)
 

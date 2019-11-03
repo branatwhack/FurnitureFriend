@@ -18,6 +18,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
+            <% if (loggedIn) { %>
                 <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Furniture Search
@@ -27,20 +28,26 @@
                           <a class="dropdown-item" href="/notyet">Take a Pic</a>
                     </div>
                 </li>
-
-                <li class="nav-item active">
-                  <a class="nav-link" href="/furnitureSearch">  <span class="sr-only">(current)</span></a>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Furniture Search
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="/furnitureSearch">Enter Manually</a>
+                          <a class="dropdown-item" href="/notyet">Take a Pic</a>
+                    </div>
                 </li>
+            <% } %>
 
-                <li class="nav-item">
+              <li class="nav-item">
                    <a class="nav-link active" href="/notyet"> AR View</a>
-                </li>
+              </li>
 
-                <li class="nav-item">
+              <li class="nav-item">
                    <a class="nav-link active" href="/notyet"> RoomDesign </a>
-                </li>
+              </li>
 
-                <% if (loggedIn) { %>
+              <% if (loggedIn) { %>
                     <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Profiles
