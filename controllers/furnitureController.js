@@ -47,7 +47,7 @@ exports.getAllFurniture = ( req, res ) => {
 
 exports.getFurnitures = ( req, res ) => {
   //gconsle.log('in getAllSkills')
-  Furniture.find().toArray((err, items)=>{
+  Furniture.find( {Type: req.body.type })
     .exec()
     .then( ( result ) => {
       console.log( req.body.type );
@@ -65,5 +65,5 @@ exports.getFurnitures = ( req, res ) => {
     .then( () => {
       //console.log( 'skill promise complete' );
     } );
-  };
+
 };
