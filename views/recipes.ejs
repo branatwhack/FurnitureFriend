@@ -1,0 +1,53 @@
+<%- include('header') -%>
+    <div class="jumbotron">
+        <h1>Quiz 3</h1>
+        <p>Recipes</p>
+        </div>
+
+    <form method="post" action="/processquiz">
+      Dish Name: <br><textarea name="DishName"></textarea>
+      <br>
+      Ingredients: <br><textarea name="Ingredients"></textarea>
+      <br>
+      Description: <br><textarea name="Description"></textarea>
+      <br>
+
+     <input type="submit">
+
+      <% if (loggedIn) { %>
+      <% } else { %>
+       You must be logged in to submit form info.
+       <% } %>
+    </form>
+
+
+    <ol>
+      <% for(i = 0; i<recipes.length; i++){  %>
+          <li>
+                <b> <%= recipes[i].DishName %> </b>
+                    <%= recipes[i].Ingredients %>    <br>
+                    <%= recipes[i].Description %> <br>
+      created by    <%= recipes[i].UserId %> <br>
+                    <%= recipes[i].Date %> <br>
+          </li>
+      <% } %>
+      </ol>
+
+      <i>
+
+   <% if (post.userId.equals(user._id)) { %>
+       <input type="checkbox" name="delete" value="<%= post._id %>">
+   <% } %>
+   <pre>
+   <%= post.post %>
+   </pre>
+   <form method="post" action="/saveForumComment">
+       <input type="hidden" name="postId" value="<%= post._id %>">
+       <textarea name="comment"  cols="100%"></textarea><br>
+       <input class="btn btn-sm btn-primary" type="submit" value="Add Comment">
+   </form>
+   <br><br><br>
+   <iframe src="/showPostComments/<%= post._id%>" height="200" width="100%"></iframe>
+
+
+<%- include('footer') -%>

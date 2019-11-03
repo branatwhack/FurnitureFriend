@@ -1,0 +1,32 @@
+<%- include('header') -%>
+    <div class="jumbotron">
+        <h1>Find the Furniture You Need!</h1>
+        <p>Please enter the furniture that you need and enter size of your room.</p>
+        <p>We will show you available options. Choose your favorite and it will arrive in minutes!!! XD</p>
+    </div>
+
+    <form method="post" action="/processform">
+      Furniture Type: <br>
+      <select id='door-select'>
+     <option value="top">Bed</option>
+     <option value="left">Table</option>
+     <option value="right">Sofa</option>
+     <option value="bottom">Chair</option>
+   </select>
+      <br>
+      Length of Room: <br><textarea name="TypeMakeup"></textarea>
+      <br>
+      Width of Room: <br><textarea name="ColorCode"></textarea>
+      <br>
+      Comments: <br><textarea name="userComments"></textarea>
+      <br>
+      URL: <input type="text" name="url" value="add URL here"> <br>
+      <% if (loggedIn) { %>
+     <input type="submit">
+     <% } else { %>
+       You must be logged in to submit form info.
+       <% } %>
+    </form>
+
+
+<%- include('footer') -%>

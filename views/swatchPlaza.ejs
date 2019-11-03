@@ -1,0 +1,31 @@
+<%- include('header') -%>
+    <div class="jumbotron">
+        <h1>Here is all Comments on Makeup!</h1>
+        <p>See people's recommendations on Swatching!</p>
+        <p>Hope others' shopping experience will be very helpful to you!</p>
+    </div>
+
+
+    <ol>
+
+      <% for(var i=0; i<swatches.length; i++) { %>
+        <li>
+          <i>
+          Brand Name: <%= swatches[i].BrandName %></\/i>
+          <br>
+          <i>
+          Makeup Type: <%= swatches[i].TypeMakeup %></\/i>
+          <br>
+          <i>
+          Color Code: <%= swatches[i].ColorCode %></\/i>
+          <br>
+          <i>
+          Comments: <%= swatches[i].userComments %></\/i>
+          <br>
+          <a href="/swatchPlaza/<%= swatches[i]._id %>">
+          More information</a>
+         </li>
+      <% } %>
+    </ol>
+
+    <%- include('footer') -%>
